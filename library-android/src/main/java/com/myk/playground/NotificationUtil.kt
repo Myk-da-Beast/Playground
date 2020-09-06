@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.template.library.android
+package com.myk.playground
 
 import android.app.Notification
 import android.app.NotificationChannel
