@@ -3,8 +3,8 @@ package com.myk.playground
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.myk.playground.databinding.ActivityMainBinding
 import com.ncorti.kotlin.template.library.FactorialCalculator
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,14 +12,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        button_compute.setOnClickListener {
-            val input = edit_text_factorial.text.toString().toInt()
+        binding.buttonCompute.setOnClickListener {
+            val input = binding.editTextFactorial.text.toString().toInt()
             val result = FactorialCalculator.computeFactorial(input).toString()
 
-            text_result.text = result
-            text_result.visibility = View.VISIBLE
+            binding.textResult.text = result
+            binding.textResult.visibility = View.VISIBLE
 
             notificationUtil.showNotification(
                 context = this,
