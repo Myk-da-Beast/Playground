@@ -45,7 +45,7 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
-    dynamicFeatures = mutableSetOf()
+    dynamicFeatures = mutableSetOf(":feature_search", ":feature_teams")
 }
 
 dependencies {
@@ -53,8 +53,6 @@ dependencies {
 
     implementation(project(":library-android"))
     implementation(project(":library-kotlin"))
-    implementation(project(":feature_search"))
-    implementation(project(":feature_teams"))
 
     // implementation(SupportLibs.MATERIAL)
     api("com.google.android.material:material:1.3.0-alpha02")
@@ -65,10 +63,11 @@ dependencies {
 
     api(NavigationLibs.NAVIGATION_FRAGMENT)
     api(NavigationLibs.NAVIGATION_UI)
+    api(NavigationLibs.NAVIGATION_DYNAMIC_FEATURES)
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.1")
-    implementation("androidx.navigation:navigation-fragment:2.3.0")
-    implementation("androidx.navigation:navigation-ui:2.3.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")

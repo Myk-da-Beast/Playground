@@ -21,8 +21,8 @@ rootProject.name = ("playground")
 
 include(
     "app",
-    "feature_search",
     "library-android",
     "library-kotlin"
 )
+include(":feature_search")
 include(":feature_teams")

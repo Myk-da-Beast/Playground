@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.myk.feature.teams">
+<manifest xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.myk.feature.teams">
 
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_feature_teams">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
 </manifest>

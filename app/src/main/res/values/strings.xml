@@ -9,4 +9,5 @@
     <string name="search">Search</string>
     <string name="team">Team</string>
     <string name="title_feature_teams">Teams</string>
+    <string name="title_test_feature">test</string>
 </resources>
