@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android-extensions")
+    id("kotlin-android")
 }
 
 android {
@@ -20,10 +21,16 @@ android {
         versionName = AppCoordinates.APP_VERSION_NAME
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -38,6 +45,7 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
+    dynamicFeatures = mutableSetOf()
 }
 
 dependencies {
@@ -45,14 +53,27 @@ dependencies {
 
     implementation(project(":library-android"))
     implementation(project(":library-kotlin"))
+    implementation(project(":feature_search"))
+    implementation(project(":feature_teams"))
+
+    // implementation(SupportLibs.MATERIAL)
+    api("com.google.android.material:material:1.3.0-alpha02")
 
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
 
-    testImplementation(TestingLib.JUNIT)
+    api(NavigationLibs.NAVIGATION_FRAGMENT)
+    api(NavigationLibs.NAVIGATION_UI)
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.1")
+    implementation("androidx.navigation:navigation-fragment:2.3.0")
+    implementation("androidx.navigation:navigation-ui:2.3.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
+    // api(NavigationLibs.NAVIGATION_DYNAMIC_FEATURES)
 
-    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
-    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
-    androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
+    addTestDependencies()
 }

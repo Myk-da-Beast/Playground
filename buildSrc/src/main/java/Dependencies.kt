@@ -6,6 +6,7 @@ object Sdk {
 
 object Versions {
     const val ANDROIDX_TEST_EXT = "1.1.1"
+    const val MATERIAL = "1.2.0"
     const val ANDROIDX_TEST = "1.2.0"
     const val APPCOMPAT = "1.1.0"
     const val CONSTRAINT_LAYOUT = "1.1.3"
@@ -13,6 +14,7 @@ object Versions {
     const val ESPRESSO_CORE = "3.2.0"
     const val JUNIT = "4.13"
     const val KTLINT = "0.37.2"
+    const val NAV = "2.3.0"
 }
 
 object BuildPluginsVersion {
@@ -25,8 +27,17 @@ object BuildPluginsVersion {
 
 object SupportLibs {
     const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APPCOMPAT}"
-    const val ANDROIDX_CONSTRAINT_LAYOUT = "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT}"
+    const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
+    const val ANDROIDX_CONSTRAINT_LAYOUT =
+        "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
+}
+
+object NavigationLibs {
+    const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${Versions.NAV}"
+    const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAV}"
+    const val NAVIGATION_DYNAMIC_FEATURES =
+        "androidx.navigation:navigation-dynamic-features-fragment:${Versions.NAV}"
 }
 
 object TestingLib {

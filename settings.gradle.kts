@@ -17,10 +17,12 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+rootProject.name = ("playground")
 
 include(
     "app",
+    "feature_search",
     "library-android",
     "library-kotlin"
 )
+include(":feature_teams")
