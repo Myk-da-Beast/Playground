@@ -17,6 +17,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -37,6 +46,8 @@ dependencies {
     implementation(project(":app"))
     implementation(GeneralLibs.KOTLIN_STDLIB)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
+    implementation("com.squareup.retrofit2:retrofit:2.8.2")
+    implementation("com.squareup.retrofit2:converter-moshi:2.8.2")
 
     addTestDependencies()
 }

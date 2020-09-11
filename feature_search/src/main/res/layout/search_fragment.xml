@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/text_view"
         android:background="@color/cardview_dark_background"
         android:layout_gravity="center"
         android:gravity="center"
