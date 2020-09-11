@@ -15,6 +15,7 @@ object Versions {
     const val JUNIT = "4.13"
     const val KTLINT = "0.37.2"
     const val NAV = "2.3.0"
+    const val KOTLIN = "1.4.0"
 }
 
 object BuildPluginsVersion {
@@ -23,6 +24,10 @@ object BuildPluginsVersion {
     const val KOTLIN = "1.3.72"
     const val KTLINT = "9.2.1"
     const val VERSIONS_PLUGIN = "0.28.0"
+}
+
+object GeneralLibs {
+    const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN}"
 }
 
 object SupportLibs {
