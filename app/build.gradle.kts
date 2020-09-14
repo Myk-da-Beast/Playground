@@ -54,25 +54,24 @@ dependencies {
     implementation(project(":library-android"))
     implementation(project(":library-kotlin"))
 
-    // implementation(SupportLibs.MATERIAL)
-    api("com.google.android.material:material:1.3.0-alpha02")
+    // AndroidX - Hardware support and Compatibility
+    api(SupportLibs.MATERIAL)
+    api(SupportLibs.ANDROIDX_APPCOMPAT)
+    api(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
+    api(SupportLibs.ANDROIDX_CORE_KTX)
 
-    implementation(SupportLibs.ANDROIDX_APPCOMPAT)
-    implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
-    implementation(SupportLibs.ANDROIDX_CORE_KTX)
-
+    // Navigation
     api(NavigationLibs.NAVIGATION_FRAGMENT)
     api(NavigationLibs.NAVIGATION_UI)
     api(NavigationLibs.NAVIGATION_DYNAMIC_FEATURES)
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
-    // api(NavigationLibs.NAVIGATION_DYNAMIC_FEATURES)
+
+    // Koin - Dependency Injection
+    api(KoinLibs.Android)
+    api(KoinLibs.ViewModels)
+
+    // Retrofit - Api Wrapper
+    implementation(RetrofitLibs.retrofit)
+    implementation(RetrofitLibs.converterMoshi)
 
     addTestDependencies()
 }

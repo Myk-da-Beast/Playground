@@ -46,8 +46,10 @@ dependencies {
     implementation(project(":app"))
     implementation(GeneralLibs.KOTLIN_STDLIB)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
-    implementation("com.squareup.retrofit2:retrofit:2.8.2")
-    implementation("com.squareup.retrofit2:converter-moshi:2.8.2")
+
+    // Retrofit - Api wrapper
+    implementation(RetrofitLibs.retrofit)
+    implementation(RetrofitLibs.converterMoshi)
 
     addTestDependencies()
 }

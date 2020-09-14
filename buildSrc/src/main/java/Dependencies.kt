@@ -6,7 +6,7 @@ object Sdk {
 
 object Versions {
     const val ANDROIDX_TEST_EXT = "1.1.1"
-    const val MATERIAL = "1.2.0"
+    const val MATERIAL = "1.3.0-alpha02"
     const val ANDROIDX_TEST = "1.2.0"
     const val APPCOMPAT = "1.1.0"
     const val CONSTRAINT_LAYOUT = "1.1.3"
@@ -16,6 +16,8 @@ object Versions {
     const val KTLINT = "0.37.2"
     const val NAV = "2.3.0"
     const val KOTLIN = "1.4.0"
+    const val KOIN = "2.0.1"
+    const val RETROFIT = "2.8.2"
 }
 
 object BuildPluginsVersion {
@@ -28,6 +30,7 @@ object BuildPluginsVersion {
 
 object GeneralLibs {
     const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN}"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
 }
 
 object SupportLibs {
@@ -38,6 +41,11 @@ object SupportLibs {
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
 }
 
+object KoinLibs {
+    const val Android = "org.koin:koin-android:${Versions.KOIN}"
+    const val ViewModels = "org.koin:koin-androidx-viewmodel:${Versions.KOIN}"
+}
+
 object NavigationLibs {
     const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${Versions.NAV}"
     const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAV}"
@@ -45,8 +53,14 @@ object NavigationLibs {
         "androidx.navigation:navigation-dynamic-features-fragment:${Versions.NAV}"
 }
 
+object RetrofitLibs {
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
+    const val converterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT}"
+}
+
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
+    const val KOIN = "org.koin:koin-test:${Versions.KOIN}"
 }
 
 object AndroidTestingLib {

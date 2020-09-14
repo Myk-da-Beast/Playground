@@ -4,6 +4,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 fun DependencyHandler.addTestDependencies() {
     testImplementation(TestingLib.JUNIT)
+    testImplementation(TestingLib.KOIN)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
