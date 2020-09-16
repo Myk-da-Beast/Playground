@@ -1,6 +1,6 @@
 package com.myk.feature.search.data.model
 
-data class Pokemon(
+data class PokemonRemoteDataModel(
     val name: String,
     val url: String
 )
