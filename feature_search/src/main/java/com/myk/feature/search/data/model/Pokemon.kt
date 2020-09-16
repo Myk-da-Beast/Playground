@@ -1,7 +1,8 @@
 package com.myk.feature.search.data.model
 
 data class Pokemon(
-    val name: String
+    val name: String,
+    val url: String
 )
 
 /** Possible Fields **/

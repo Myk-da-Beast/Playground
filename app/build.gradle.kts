@@ -60,6 +60,14 @@ dependencies {
     api(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     api(SupportLibs.ANDROIDX_CORE_KTX)
 
+    // Coroutines - Thread Management
+    api(CoroutineLibs.CORE)
+    api(CoroutineLibs.ANDROID)
+    api(CoroutineLibs.PLAY_SERVICES)
+    api(CoroutineLibs.LIFECYCLE_VIEWMODEL)
+    api(CoroutineLibs.LIFECYCLE_LIVEDATA)
+    api(CoroutineLibs.LIFECYCLE_RUNTIME)
+
     // Navigation
     api(NavigationLibs.NAVIGATION_FRAGMENT)
     api(NavigationLibs.NAVIGATION_UI)

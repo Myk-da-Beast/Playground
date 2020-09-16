@@ -18,6 +18,10 @@ object Versions {
     const val KOTLIN = "1.4.0"
     const val KOIN = "2.0.1"
     const val RETROFIT = "2.8.2"
+    const val COROUTINES = "1.3.9"
+    const val COROUTINES_PLAY_SERVICES = "1.1.1"
+    const val LIFECYCLE = "2.2.0"
+    const val LIFECYCLE_LIVEDATA = "2.3.0-alpha07"
 }
 
 object BuildPluginsVersion {
@@ -39,6 +43,18 @@ object SupportLibs {
     const val ANDROIDX_CONSTRAINT_LAYOUT =
         "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
+}
+
+object CoroutineLibs {
+    const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
+    const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
+    const val PLAY_SERVICES =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.COROUTINES_PLAY_SERVICES}"
+    const val LIFECYCLE_VIEWMODEL =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"
+    const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
+    const val LIFECYCLE_LIVEDATA =
+        "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE_LIVEDATA}"
 }
 
 object KoinLibs {
