@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.myk.feature.search.databinding.PokemonItemBinding
 import com.myk.feature.search.databinding.SearchFragmentBinding
 import com.myk.feature.search.di.searchModule
+import com.myk.feature.search.domain.model.Pokemon
 import com.myk.playground.di.sharedModules
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -30,6 +34,7 @@ private fun injectFeatures() = loadModules
 class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModel()
+    private val adapter = PokemonAdapter(listOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +46,53 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return SearchFragmentBinding.inflate(inflater, container, false).root
+        val binding = SearchFragmentBinding.inflate(inflater, container, false)
+
+        binding.recycleView.adapter = adapter
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.pokemon.observe(
             viewLifecycleOwner,
             {
                 Log.w("Search", "$it")
+                adapter.setItems(it)
             }
         )
+    }
+
+    class PokemonAdapter(
+        private var items: List<Pokemon>
+    ) : RecyclerView.Adapter<PokemonViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PokemonViewHolder(
+            PokemonItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
+        override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
+            holder.bind(items.getOrNull(position))
+        }
+
+        override fun getItemCount() = items.size
+
+        fun setItems(items: List<Pokemon>) {
+            this.items = items
+            this.notifyDataSetChanged()
+        }
+    }
+
+    class PokemonViewHolder(
+        private val binding: PokemonItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(pokemon: Pokemon?) {
+            Glide.with(itemView).load(pokemon?.imageUrl).into(binding.imageView)
+        }
     }
 }

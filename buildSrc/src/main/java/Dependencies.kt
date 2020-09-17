@@ -22,6 +22,7 @@ object Versions {
     const val COROUTINES_PLAY_SERVICES = "1.1.1"
     const val LIFECYCLE = "2.2.0"
     const val LIFECYCLE_LIVEDATA = "2.3.0-alpha07"
+    const val GLIDE = "4.11.0"
 }
 
 object BuildPluginsVersion {
@@ -72,6 +73,11 @@ object NavigationLibs {
 object RetrofitLibs {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val converterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT}"
+}
+
+object GlideLibs {
+    const val glide = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
+    const val compiler = "com.github.bumptech.glide:compiler:${Versions.GLIDE}"
 }
 
 object TestingLib {

@@ -51,5 +51,9 @@ dependencies {
     implementation(RetrofitLibs.retrofit)
     implementation(RetrofitLibs.converterMoshi)
 
+    // Glide
+    implementation(GlideLibs.glide)
+    annotationProcessor(GlideLibs.compiler)
+
     addTestDependencies()
 }
