@@ -51,9 +51,8 @@ dependencies {
     implementation(RetrofitLibs.retrofit)
     implementation(RetrofitLibs.converterMoshi)
 
-    // Glide
-    implementation(GlideLibs.glide)
-    annotationProcessor(GlideLibs.compiler)
+    // Coil Image Loader
+    implementation(CoilLibs.coil)
 
     addTestDependencies()
 }

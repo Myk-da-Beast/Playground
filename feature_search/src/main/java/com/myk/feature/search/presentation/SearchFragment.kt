@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import com.myk.feature.search.databinding.PokemonItemBinding
 import com.myk.feature.search.databinding.SearchFragmentBinding
 import com.myk.feature.search.di.searchModule
@@ -92,7 +92,7 @@ class SearchFragment : Fragment() {
         private val binding: PokemonItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(pokemon: Pokemon?) {
-            Glide.with(itemView).load(pokemon?.imageUrl).into(binding.imageView)
+            binding.imageView.load(pokemon?.imageUrl)
         }
     }
 }

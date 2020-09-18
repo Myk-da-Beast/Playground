@@ -81,5 +81,8 @@ dependencies {
     implementation(RetrofitLibs.retrofit)
     implementation(RetrofitLibs.converterMoshi)
 
+    // Coil - Image Loader
+    implementation(CoilLibs.coil)
+
     addTestDependencies()
 }
