@@ -54,6 +54,9 @@ dependencies {
     implementation(project(":library-android"))
     implementation(project(":library-kotlin"))
 
+    // Timber - Logging
+    api(TimberLibs.TIMBER)
+
     // AndroidX - Hardware support and Compatibility
     api(SupportLibs.MATERIAL)
     api(SupportLibs.ANDROIDX_APPCOMPAT)

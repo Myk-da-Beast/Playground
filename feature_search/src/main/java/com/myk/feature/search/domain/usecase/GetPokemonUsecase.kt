@@ -1,11 +1,11 @@
 package com.myk.feature.search.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.myk.feature.search.domain.model.Pokemon
 import com.myk.feature.search.domain.repository.PokemonRepository
+import kotlinx.coroutines.flow.Flow
 
 interface GetPokemonUsecase {
-    operator fun invoke(): LiveData<List<Pokemon>>
+    operator fun invoke(): Flow<List<Pokemon>>
 }
 
 class GetPokemonUsecaseImpl(

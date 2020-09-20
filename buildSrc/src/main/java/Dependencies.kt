@@ -9,6 +9,7 @@ object Versions {
     const val MATERIAL = "1.3.0-alpha02"
     const val ANDROIDX_TEST = "1.2.0"
     const val APPCOMPAT = "1.1.0"
+    const val TIMBER = "4.7.1"
     const val CONSTRAINT_LAYOUT = "1.1.3"
     const val CORE_KTX = "1.2.0"
     const val ESPRESSO_CORE = "3.2.0"
@@ -23,6 +24,7 @@ object Versions {
     const val LIFECYCLE = "2.2.0"
     const val LIFECYCLE_LIVEDATA = "2.3.0-alpha07"
     const val COIL = "0.13.0"
+    const val ROOM = "2.2.5"
 }
 
 object BuildPluginsVersion {
@@ -44,6 +46,10 @@ object SupportLibs {
     const val ANDROIDX_CONSTRAINT_LAYOUT =
         "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
+}
+
+object TimberLibs {
+    const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
 }
 
 object CoroutineLibs {
@@ -79,9 +85,16 @@ object CoilLibs {
     const val coil = "io.coil-kt:coil:${Versions.COIL}"
 }
 
+object RoomLibs {
+    const val RUNTIME = "androidx.room:room-runtime:${Versions.ROOM}"
+    const val COMPILER = "androidx.room:room-compiler:${Versions.ROOM}"
+    const val KTX = "androidx.room:room-ktx:${Versions.ROOM}"
+}
+
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
     const val KOIN = "org.koin:koin-test:${Versions.KOIN}"
+    const val ROOM = "androidx.room:room-testing:${Versions.ROOM}"
 }
 
 object AndroidTestingLib {

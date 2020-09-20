@@ -26,3 +26,4 @@ include(
 )
 include(":feature_search")
 include(":feature_teams")
+include(":library_data")

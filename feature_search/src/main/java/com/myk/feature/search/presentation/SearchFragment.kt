@@ -12,6 +12,7 @@ import com.myk.feature.search.databinding.PokemonItemBinding
 import com.myk.feature.search.databinding.SearchFragmentBinding
 import com.myk.feature.search.di.searchModule
 import com.myk.feature.search.domain.model.Pokemon
+import com.myk.library.data.di.dataModule
 import com.myk.playground.di.sharedModules
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -21,6 +22,7 @@ private val loadModules by lazy {
     loadKoinModules(
         listOf(
             sharedModules,
+            dataModule,
             searchModule
         )
     )

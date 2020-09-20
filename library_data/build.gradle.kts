@@ -1,20 +1,15 @@
 plugins {
-    id("com.android.dynamic-feature")
+    id("com.android.library")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
     compileSdkVersion(Sdk.COMPILE_SDK_VERSION)
-    // buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion(Sdk.MIN_SDK_VERSION)
         targetSdkVersion(Sdk.TARGET_SDK_VERSION)
-
-        applicationId = AppCoordinates.APP_ID
-        versionCode = AppCoordinates.APP_VERSION_CODE
-        versionName = AppCoordinates.APP_VERSION_NAME
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -39,21 +34,25 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
-    buildFeatures.viewBinding = true
+
+    packagingOptions {
+        exclude("META-INF/atomicfu.kotlin_module")
+    }
 }
 
 dependencies {
-    implementation(project(":app"))
-    implementation(project(":library_data"))
     implementation(GeneralLibs.KOTLIN_STDLIB)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
 
-    // Retrofit - Api wrapper
-    implementation(RetrofitLibs.retrofit)
-    implementation(RetrofitLibs.converterMoshi)
+    // Room - Local Data Storage
+    implementation(RoomLibs.RUNTIME)
+    kapt(RoomLibs.COMPILER)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(RoomLibs.KTX)
+    // optional - Test helpers
+    testImplementation(TestingLib.ROOM)
 
-    // Coil - Image Loading and Memory Management
-    implementation(CoilLibs.coil)
+    implementation(KoinLibs.Android)
 
     addTestDependencies()
 }
