@@ -22,6 +22,7 @@ fun PokemonRemoteDataModel.toLocalDataModel(): PokemonLocalDataModel {
 
     val id = extractId(url)
 
+    @Suppress("MaxLineLength")
     return PokemonLocalDataModel(
         name,
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/$id.png"

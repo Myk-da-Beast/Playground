@@ -19,11 +19,7 @@ pluginManagement {
 
 rootProject.name = ("playground")
 
-include(
-    "app",
-    "library-android",
-    "library-kotlin"
-)
+include("app")
 include(":feature_search")
 include(":feature_teams")
 include(":library_data")

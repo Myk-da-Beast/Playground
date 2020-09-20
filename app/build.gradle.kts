@@ -51,9 +51,6 @@ android {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
 
-    implementation(project(":library-android"))
-    implementation(project(":library-kotlin"))
-
     // Timber - Logging
     api(TimberLibs.TIMBER)
 

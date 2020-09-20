@@ -17,6 +17,7 @@ class PokemonRepositoryImpl(
     private val dao: PokemonDao
 ) : PokemonRepository {
 
+    @Suppress("TooGenericExceptionCaught")
     @ExperimentalCoroutinesApi
     override fun getPokemon() = flow {
         val results = try {
