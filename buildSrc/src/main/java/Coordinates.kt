@@ -1,4 +1,4 @@
-val PUBLISHING_GROUP = "com.myk.playground"
+const val PUBLISHING_GROUP = "com.myk.playground"
 
 object AppCoordinates {
     const val APP_ID = "com.myk.playground"
