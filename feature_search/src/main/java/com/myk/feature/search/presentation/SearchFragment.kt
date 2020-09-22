@@ -1,17 +1,16 @@
 package com.myk.feature.search.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.myk.feature.search.databinding.PokemonItemBinding
 import com.myk.feature.search.databinding.SearchFragmentBinding
 import com.myk.feature.search.di.searchModule
 import com.myk.feature.search.domain.model.Pokemon
+import com.myk.library.base.presentation.BaseAdapter
 import com.myk.library.data.di.dataModule
 import com.myk.playground.di.sharedModules
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -61,15 +60,14 @@ class SearchFragment : Fragment() {
         viewModel.pokemon.observe(
             viewLifecycleOwner,
             {
-                Log.w("Search", "$it")
                 adapter.setItems(it)
             }
         )
     }
 
     class PokemonAdapter(
-        private var items: List<Pokemon>
-    ) : RecyclerView.Adapter<PokemonViewHolder>() {
+        items: List<Pokemon>
+    ) : BaseAdapter<Pokemon, PokemonItemBinding, PokemonViewHolder>(items) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PokemonViewHolder(
             PokemonItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -77,24 +75,13 @@ class SearchFragment : Fragment() {
                 false
             )
         )
-
-        override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-            holder.bind(items.getOrNull(position))
-        }
-
-        override fun getItemCount() = items.size
-
-        fun setItems(items: List<Pokemon>) {
-            this.items = items
-            this.notifyDataSetChanged()
-        }
     }
 
     class PokemonViewHolder(
-        private val binding: PokemonItemBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(pokemon: Pokemon?) {
-            binding.imageView.load(pokemon?.imageUrl)
+        binding: PokemonItemBinding
+    ) : BaseAdapter.ViewHolder<Pokemon, PokemonItemBinding>(binding) {
+        override fun bind(item: Pokemon?) {
+            binding.imageView.load(item?.imageUrl)
         }
     }
 }

@@ -1,29 +1,17 @@
 plugins {
-    id("com.android.dynamic-feature")
+    id("com.android.library")
     kotlin("android")
 }
 
 android {
     compileSdkVersion(Sdk.COMPILE_SDK_VERSION)
-    // buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion(Sdk.MIN_SDK_VERSION)
         targetSdkVersion(Sdk.TARGET_SDK_VERSION)
-
-        applicationId = AppCoordinates.APP_ID
         versionCode = AppCoordinates.APP_VERSION_CODE
         versionName = AppCoordinates.APP_VERSION_NAME
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 
     buildTypes {
@@ -35,26 +23,31 @@ android {
             )
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     lintOptions {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
-    buildFeatures.viewBinding = true
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-    implementation(project(":app"))
-    implementation(project(":library_base"))
-    implementation(project(":library_data"))
     implementation(GeneralLibs.KOTLIN_STDLIB)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
-
-    // Retrofit - Api wrapper
-    implementation(RetrofitLibs.retrofit)
-    implementation(RetrofitLibs.converterMoshi)
-
-    // Coil - Image Loading and Memory Management
-    implementation(CoilLibs.coil)
+    implementation(SupportLibs.MATERIAL)
+    implementation(SupportLibs.ANDROIDX_APPCOMPAT)
+    implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
 
     addTestDependencies()
 }
