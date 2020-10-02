@@ -91,15 +91,33 @@ object RoomLibs {
     const val KTX = "androidx.room:room-ktx:${Versions.ROOM}"
 }
 
-object TestingLib {
-    const val JUNIT = "junit:junit:${Versions.JUNIT}"
-    const val KOIN = "org.koin:koin-test:${Versions.KOIN}"
-    const val ROOM = "androidx.room:room-testing:${Versions.ROOM}"
+private object TestingLibraryVersions {
+    const val JUNIT = "4.13"
+    const val KLUENT = "1.61"
+    const val ANDROIDX_TEST_EXT = "1.1.1"
+    const val ANDROIDX_TEST = "1.2.0"
+    const val ESPRESSO_CORE = "3.2.0"
+    const val MOCKK = "1.10.0"
+    const val ARCH = "2.1.0"
+    const val KOIN = "2.0.1"
+    const val ROOM = "2.2.5"
+    const val COROUTINES = "1.3.9"
 }
 
-object AndroidTestingLib {
-    const val ANDROIDX_TEST_RULES = "androidx.test:rules:${Versions.ANDROIDX_TEST}"
-    const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${Versions.ANDROIDX_TEST}"
-    const val ANDROIDX_TEST_EXT_JUNIT = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT}"
-    const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
+object TestingLibs {
+    const val JUNIT = "junit:junit:${TestingLibraryVersions.JUNIT}"
+    const val KLUENT = "org.amshove.kluent:kluent:${TestingLibraryVersions.KLUENT}"
+    const val KLUENT_ANDROID = "org.amshove.kluent:kluent-android:${TestingLibraryVersions.KLUENT}"
+    const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${TestingLibraryVersions.ANDROIDX_TEST}"
+    const val ESPRESSO_CORE =
+        "androidx.test.espresso:espresso-core:${TestingLibraryVersions.ESPRESSO_CORE}"
+    const val ANDROIDX_TEST_RULES = "androidx.test:rules:${TestingLibraryVersions.ANDROIDX_TEST}"
+    const val ANDROIDX_TEST_EXT_JUNIT =
+        "androidx.test.ext:junit:${TestingLibraryVersions.ANDROIDX_TEST_EXT}"
+    const val MOCKK = "io.mockk:mockk:${TestingLibraryVersions.MOCKK}"
+    const val COROUTINES_TEST =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${TestingLibraryVersions.COROUTINES}"
+    const val ANDROID_X_TEST = "androidx.arch.core:core-testing:${TestingLibraryVersions.ARCH}"
+    const val KOIN = "org.koin:koin-test:${TestingLibraryVersions.KOIN}"
+    const val ROOM = "androidx.room:room-testing:${TestingLibraryVersions.ROOM}"
 }

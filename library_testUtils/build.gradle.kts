@@ -1,9 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    kotlin("kapt")
 }
-
 android {
     compileSdkVersion(Sdk.COMPILE_SDK_VERSION)
 
@@ -46,17 +44,9 @@ android {
 
 dependencies {
     implementation(GeneralLibs.KOTLIN_STDLIB)
-    implementation(SupportLibs.ANDROIDX_CORE_KTX)
-
-    // Room - Local Data Storage
-    implementation(RoomLibs.RUNTIME)
-    kapt(RoomLibs.COMPILER)
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation(RoomLibs.KTX)
-    // optional - Test helpers
-    testImplementation(TestingLibs.ROOM)
-
-    implementation(KoinLibs.Android)
-
-    addTestDependencies()
+    // We use implementation here instead of testImplementation because we will add this library as
+    // testImplementation dependency to other modules. Using implementation allows us to write tests
+    // for test utilities.
+    implementation(TestingLibs.JUNIT)
+    implementation(TestingLibs.COROUTINES_TEST)
 }

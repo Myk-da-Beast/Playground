@@ -3,12 +3,21 @@ import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 fun DependencyHandler.addTestDependencies() {
-    testImplementation(TestingLib.JUNIT)
-    testImplementation(TestingLib.KOIN)
+    testImplementation(project(":library_testUtils"))
 
-    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
-    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
-    androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
+    testImplementation(TestingLibs.JUNIT)
+    testImplementation(TestingLibs.KLUENT)
+    testImplementation(TestingLibs.MOCKK)
+    testImplementation(TestingLibs.COROUTINES_TEST)
+    testImplementation(TestingLibs.ANDROID_X_TEST)
+    testImplementation(TestingLibs.KOIN)
+    testImplementation(TestingLibs.ROOM)
+
+    androidTestImplementation(TestingLibs.ANDROIDX_TEST_RUNNER)
+    androidTestImplementation(TestingLibs.ESPRESSO_CORE)
+    androidTestImplementation(TestingLibs.KLUENT_ANDROID)
+    androidTestImplementation(TestingLibs.ANDROIDX_TEST_EXT_JUNIT)
+    androidTestImplementation(TestingLibs.ANDROIDX_TEST_RULES)
 }
 
 /*
