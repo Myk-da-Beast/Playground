@@ -59,8 +59,8 @@ class PokemonRepositoryImplTest {
 
             // then
             coVerifySequence {
-                mockDao.insertAll(convertedDataModels)
                 mockService.getPokemon()
+                mockDao.insertAll(convertedDataModels)
                 mockDao.getAll()
             }
             result shouldBeEqualTo convertedDomainModels
