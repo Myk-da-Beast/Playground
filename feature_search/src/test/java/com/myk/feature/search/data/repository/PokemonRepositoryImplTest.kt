@@ -11,7 +11,7 @@ import com.myk.library.data.model.PokemonLocalDataModel
 import io.mockk.MockKAnnotations
 import io.mockk.Runs
 import io.mockk.coEvery
-import io.mockk.coVerify
+import io.mockk.coVerifySequence
 import io.mockk.impl.annotations.MockK
 import io.mockk.just
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -58,9 +58,11 @@ class PokemonRepositoryImplTest {
             val result = cut.getPokemon().take(1).first()
 
             // then
-            coVerify { mockService.getPokemon() }
-            coVerify { mockDao.insertAll(convertedDataModels) }
-            coVerify { mockDao.getAll() }
+            coVerifySequence {
+                mockDao.insertAll(convertedDataModels)
+                mockService.getPokemon()
+                mockDao.getAll()
+            }
             result shouldBeEqualTo convertedDomainModels
         }
 }
