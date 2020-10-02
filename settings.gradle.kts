@@ -17,7 +17,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("playground")
+rootProject.name = "playground"
 
 include("app")
 include(":feature_search")
