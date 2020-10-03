@@ -14,9 +14,17 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        initTimber()
+        initKoin()
+        initCoil()
+    }
+
+    private fun initTimber() {
         // Start Timber
         Timber.plant(Timber.DebugTree())
+    }
 
+    private fun initKoin() {
         // start Koin!
         startKoin {
             // declare used Android context
@@ -26,7 +34,9 @@ class App : Application() {
             // declare modules
             modules(sharedModules)
         }
+    }
 
+    private fun initCoil() {
         ImageLoader.Builder(this)
             .crossfade(true)
             .okHttpClient {
