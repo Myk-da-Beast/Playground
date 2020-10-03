@@ -1,7 +1,5 @@
----
 name: Feature request
 about: Suggest an idea for this project
----
 
 ## ⚠️ Is your feature request related to a problem? Please describe
 <!-- A clear and concise description of what the problem is. Ex. I'm always frustrated when [...] -->
@@ -11,5 +9,5 @@ about: Suggest an idea for this project
 
 ## 🤚 Do you want to develop this feature yourself?
 <!-- Put an `x` symbol into braces of desired choice. -->
-- [ ] Yes
-- [ ] No
+  - [ ] Yes
+  - [ ] No
