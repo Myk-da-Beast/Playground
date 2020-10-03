@@ -25,6 +25,7 @@ object Versions {
     const val LIFECYCLE_LIVEDATA = "2.3.0-alpha07"
     const val COIL = "0.13.0"
     const val ROOM = "2.2.5"
+    const val VIEW_PAGER_2 = "1.0.0"
 }
 
 object BuildPluginsVersion {
@@ -46,6 +47,7 @@ object SupportLibs {
     const val ANDROIDX_CONSTRAINT_LAYOUT =
         "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
+    const val VIEW_PAGER_2 = "androidx.viewpager2:viewpager2:${Versions.VIEW_PAGER_2}"
 }
 
 object TimberLibs {

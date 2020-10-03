@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/searchFragment"
+    app:startDestination="@id/pokemonFragment"
     android:label="search">
 
     <fragment
@@ -10,4 +10,8 @@
         android:name="com.myk.feature.search.presentation.SearchFragment"
         android:label="search_fragment"
         tools:layout="@layout/search_fragment" />
+    <fragment
+        android:id="@+id/pokemonFragment"
+        android:name="com.myk.feature.search.presentation.PokemonFragment"
+        android:label="PokemonFragment" />
 </navigation>

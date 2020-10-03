@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":library_data"))
     implementation(GeneralLibs.KOTLIN_STDLIB)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
+    implementation(SupportLibs.VIEW_PAGER_2)
 
     // Retrofit - Api wrapper
     implementation(RetrofitLibs.retrofit)
