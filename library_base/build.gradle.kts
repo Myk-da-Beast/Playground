@@ -49,5 +49,10 @@ dependencies {
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
 
+    implementation(CoroutineLibs.LIFECYCLE_RUNTIME)
+    implementation(CoroutineLibs.LIFECYCLE_LIVEDATA)
+    implementation(CoroutineLibs.LIFECYCLE_VIEWMODEL)
+    implementation(CoroutineLibs.LIFECYCLE_COMMON)
+
     addTestDependencies()
 }

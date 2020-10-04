@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
+import com.myk.feature.search.R
 import com.myk.feature.search.databinding.PokemonItemBinding
 import com.myk.feature.search.databinding.SearchFragmentBinding
 import com.myk.feature.search.di.searchModule
 import com.myk.feature.search.domain.model.Pokemon
 import com.myk.library.base.presentation.BaseAdapter
+import com.myk.library.base.presentation.viewBinding
 import com.myk.library.data.di.dataModule
 import com.myk.playground.di.sharedModules
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,9 +34,10 @@ private fun injectFeatures() = loadModules
 /**
  * This screen allows a user to search for Pokemon!
  */
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private val viewModel: SearchViewModel by viewModel()
+    private val binding by viewBinding(SearchFragmentBinding::bind)
     private val adapter = PokemonAdapter(listOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,20 +45,9 @@ class SearchFragment : Fragment() {
         injectFeatures()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding = SearchFragmentBinding.inflate(inflater, container, false)
-
-        binding.recycleView.adapter = adapter
-
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recycleView.adapter = adapter
 
         viewModel.pokemon.observe(
             viewLifecycleOwner,

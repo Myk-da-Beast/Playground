@@ -13,8 +13,6 @@ import com.myk.feature.search.R
 import com.myk.feature.search.databinding.PokemonFragmentBinding
 
 class PokemonFragment : Fragment() {
-    // When requested, this adapter returns a DemoObjectFragment,
-    // representing an object in the collection.
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 
