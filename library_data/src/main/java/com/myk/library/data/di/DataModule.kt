@@ -6,12 +6,12 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val dataModule = module {
-    single {
-        Room.databaseBuilder(
-            androidContext(),
-            AppDatabase::class.java, "default-database"
-        ).build()
+    single(override = true) {
+        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "default-database")
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     factory { get<AppDatabase>().pokemonDao() }
+    factory { get<AppDatabase>().itemDao() }
 }

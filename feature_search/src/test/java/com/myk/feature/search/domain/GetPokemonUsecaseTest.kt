@@ -1,8 +1,7 @@
 package com.myk.feature.search.domain
 
 import com.myk.feature.search.data.repository.PokemonRepositoryImpl
-import com.myk.feature.search.domain.usecase.GetPokemonUsecase
-import com.myk.feature.search.domain.usecase.GetPokemonUsecaseImpl
+import com.myk.feature.search.domain.usecase.GetPokemonUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -23,13 +22,13 @@ class GetPokemonUsecaseTest {
     @MockK
     internal lateinit var mockPokemonRepository: PokemonRepositoryImpl
 
-    private lateinit var cut: GetPokemonUsecase
+    private lateinit var cut: GetPokemonUseCase
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
 
-        cut = GetPokemonUsecaseImpl(mockPokemonRepository)
+        cut = GetPokemonUseCase(mockPokemonRepository)
     }
 
     @Test

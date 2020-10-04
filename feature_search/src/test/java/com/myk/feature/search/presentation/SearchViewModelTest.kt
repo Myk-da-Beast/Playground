@@ -1,7 +1,7 @@
 package com.myk.feature.search.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.myk.feature.search.domain.usecase.GetPokemonUsecase
+import com.myk.feature.search.domain.usecase.GetPokemonUseCase
 import com.myk.library.testUtils.CoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.coVerify
@@ -24,7 +24,7 @@ class SearchViewModelTest {
     var rule = InstantTaskExecutorRule()
 
     @MockK(relaxed = true)
-    internal lateinit var mockGetPokemonUsecase: GetPokemonUsecase
+    internal lateinit var mockGetPokemonUseCase: GetPokemonUseCase
 
     private lateinit var cut: SearchViewModel
 
@@ -32,7 +32,7 @@ class SearchViewModelTest {
     fun setUp() {
         MockKAnnotations.init(this)
 
-        cut = SearchViewModel(mockGetPokemonUsecase)
+        cut = SearchViewModel(mockGetPokemonUseCase)
     }
 
     @Test
@@ -42,6 +42,6 @@ class SearchViewModelTest {
         // when
 
         // then
-        coVerify { mockGetPokemonUsecase.invoke() }
+        coVerify { mockGetPokemonUseCase.invoke() }
     }
 }

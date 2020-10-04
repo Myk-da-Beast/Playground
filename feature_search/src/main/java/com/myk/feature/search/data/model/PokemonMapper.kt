@@ -1,6 +1,6 @@
 package com.myk.feature.search.data.model
 
-import com.myk.feature.search.domain.model.Pokemon
+import com.myk.feature.search.domain.model.PokemonDomainModel
 import com.myk.library.data.model.PokemonLocalDataModel
 
 /**
@@ -30,8 +30,8 @@ val PokemonRemoteDataModel.toLocalDataModel: PokemonLocalDataModel
         )
     }
 
-val PokemonLocalDataModel.toDomainModel: Pokemon
-    get() = Pokemon(
+val PokemonLocalDataModel.toDomainModel: PokemonDomainModel
+    get() = PokemonDomainModel(
         name,
         imageUrl ?: "N/A"
     )
