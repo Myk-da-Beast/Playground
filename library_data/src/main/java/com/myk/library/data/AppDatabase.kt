@@ -7,7 +7,7 @@ import com.myk.library.data.dao.PokemonDao
 import com.myk.library.data.model.ItemLocalDataModel
 import com.myk.library.data.model.PokemonLocalDataModel
 
-@Database(entities = [PokemonLocalDataModel::class, ItemLocalDataModel::class], version = 2)
+@Database(entities = [PokemonLocalDataModel::class, ItemLocalDataModel::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
     abstract fun itemDao(): ItemDao

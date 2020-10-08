@@ -14,18 +14,18 @@ val PokemonRemoteDataModel.toLocalDataModel: PokemonLocalDataModel
          * string is a url of the form: "https://pokeapi.co/api/v2/pokemon/1/" where id is in the last
          * part of the url.
          */
-        fun extractId(url: String): String {
+        fun extractId(url: String?): String {
             // remove the last "/"
-            val preppedUrl = url.removeSuffix("/")
+            val preppedUrl = url?.removeSuffix("/") ?: "1/"
 
             // gets the substring after the last (remaining) "/" which is presumably the id
             return preppedUrl.substringAfterLast("/")
         }
 
         return PokemonLocalDataModel(
+            extractId(url).toInt(),
             name,
-            if (url == null) null
-            else "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/" +
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/" +
                 "generation-vii/ultra-sun-ultra-moon/${extractId(url)}.png"
         )
     }

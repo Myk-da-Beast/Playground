@@ -56,6 +56,9 @@ dependencies {
     // optional - Test helpers
     testImplementation(TestingLibs.ROOM)
 
+    // Paging - results paging
+    implementation(PagingLibs.PAGING_RUNTIME)
+
     implementation(KoinLibs.Android)
 
     addTestDependencies()

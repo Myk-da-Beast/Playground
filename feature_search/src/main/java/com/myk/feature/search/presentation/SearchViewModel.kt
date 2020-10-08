@@ -1,13 +1,12 @@
 package com.myk.feature.search.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.myk.feature.search.domain.model.PokemonDomainModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.myk.feature.search.domain.usecase.GetPokemonUseCase
 
 class SearchViewModel(
-    getPokemon: GetPokemonUseCase
+    private val getPokemon: GetPokemonUseCase
 ) : ViewModel() {
-    val pokemon: LiveData<List<PokemonDomainModel>> = getPokemon().asLiveData()
+    fun searchRepo() = getPokemon().cachedIn(viewModelScope)
 }

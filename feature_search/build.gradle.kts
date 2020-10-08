@@ -1,6 +1,7 @@
 plugins {
     id("com.android.dynamic-feature")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -49,6 +50,15 @@ dependencies {
     implementation(GeneralLibs.KOTLIN_STDLIB)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
     implementation(SupportLibs.VIEW_PAGER_2)
+
+    // Room - Local Data Storage
+    implementation(RoomLibs.RUNTIME)
+    kapt(RoomLibs.COMPILER)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(RoomLibs.KTX)
+
+    // Paging - results paging
+    implementation(PagingLibs.PAGING_RUNTIME)
 
     // Retrofit - Api wrapper
     implementation(RetrofitLibs.retrofit)

@@ -24,8 +24,9 @@ object Versions {
     const val LIFECYCLE = "2.2.0"
     const val LIFECYCLE_LIVEDATA = "2.3.0-alpha07"
     const val COIL = "0.13.0"
-    const val ROOM = "2.2.5"
+    const val ROOM = "2.3.0-alpha02"
     const val VIEW_PAGER_2 = "1.0.0"
+    const val PAGING = "3.0.0-alpha07"
 }
 
 object BuildPluginsVersion {
@@ -79,6 +80,10 @@ object NavigationLibs {
         "androidx.navigation:navigation-dynamic-features-fragment:${Versions.NAV}"
 }
 
+object PagingLibs {
+    const val PAGING_RUNTIME = "androidx.paging:paging-runtime-ktx:${Versions.PAGING}"
+}
+
 object RetrofitLibs {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val converterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT}"
@@ -103,8 +108,9 @@ private object TestingLibraryVersions {
     const val MOCKK = "1.10.0"
     const val ARCH = "2.1.0"
     const val KOIN = "2.0.1"
-    const val ROOM = "2.2.5"
+    const val ROOM = "2.3.0-alpha02"
     const val COROUTINES = "1.3.9"
+    const val PAGING = "3.0.0-alpha07"
 }
 
 object TestingLibs {
@@ -123,4 +129,5 @@ object TestingLibs {
     const val ANDROID_X_TEST = "androidx.arch.core:core-testing:${TestingLibraryVersions.ARCH}"
     const val KOIN = "org.koin:koin-test:${TestingLibraryVersions.KOIN}"
     const val ROOM = "androidx.room:room-testing:${TestingLibraryVersions.ROOM}"
+    const val PAGING = "androidx.paging:paging-common:${TestingLibraryVersions.PAGING}"
 }

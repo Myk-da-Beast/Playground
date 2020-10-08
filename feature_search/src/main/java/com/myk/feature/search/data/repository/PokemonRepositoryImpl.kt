@@ -1,19 +1,26 @@
 package com.myk.feature.search.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.myk.feature.search.data.model.ItemRemoteDataModel
-import com.myk.feature.search.data.model.PokemonRemoteDataModel
 import com.myk.feature.search.data.model.toDomainModel
 import com.myk.feature.search.data.model.toLocalDataModel
 import com.myk.feature.search.data.service.PokeApiService
+import com.myk.feature.search.domain.model.PokemonDomainModel
 import com.myk.feature.search.domain.repository.PokemonRepository
 import com.myk.library.data.dao.ItemDao
 import com.myk.library.data.dao.PokemonDao
 import com.myk.library.data.model.ItemLocalDataModel
-import com.myk.library.data.model.PokemonLocalDataModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
+
+private const val POKEMON_PAGE_SIZE = 20
 
 class PokemonRepositoryImpl(
     private val service: PokeApiService,
@@ -22,19 +29,13 @@ class PokemonRepositoryImpl(
 ) : PokemonRepository {
 
     @ExperimentalCoroutinesApi
-    override fun getPokemon() = flow {
-        val results = try {
-            service.getPokemon().results
-        } catch (e: Exception) {
-            throw e
-        }
-
-        pokemonDao.insertAll(results.map(PokemonRemoteDataModel::toLocalDataModel))
-        val pokemon = pokemonDao.getAll().mapLatest {
-            it.map(PokemonLocalDataModel::toDomainModel)
-        }
-
-        emitAll(pokemon)
+    override fun getPokemon(): Flow<PagingData<PokemonDomainModel>> = Pager(
+        config = PagingConfig(POKEMON_PAGE_SIZE),
+        remoteMediator = PokemonRemoteMediator(pokemonDao, service)
+    ) {
+        pokemonDao.pagingSource()
+    }.flow.map { pagingData ->
+        pagingData.map { it.toDomainModel }
     }
 
     @ExperimentalCoroutinesApi
