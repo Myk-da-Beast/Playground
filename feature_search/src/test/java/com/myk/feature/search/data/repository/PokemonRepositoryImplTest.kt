@@ -6,6 +6,7 @@ import com.myk.feature.search.data.model.toDomainModel
 import com.myk.feature.search.data.model.toLocalDataModel
 import com.myk.feature.search.data.response.PokemonResponse
 import com.myk.feature.search.data.service.PokeApiService
+import com.myk.library.data.dao.ItemDao
 import com.myk.library.data.dao.PokemonDao
 import com.myk.library.data.model.PokemonLocalDataModel
 import io.mockk.MockKAnnotations
@@ -32,13 +33,16 @@ class PokemonRepositoryImplTest {
     @MockK
     private lateinit var mockDao: PokemonDao
 
+    @MockK
+    private lateinit var mockItemDao: ItemDao
+
     private lateinit var cut: PokemonRepositoryImpl
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
 
-        cut = PokemonRepositoryImpl(mockService, mockDao)
+        cut = PokemonRepositoryImpl(mockService, mockDao, mockItemDao)
     }
 
     @Test

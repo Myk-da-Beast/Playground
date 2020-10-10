@@ -1,5 +1,6 @@
 package com.myk.feature.search.domain
 
+import androidx.paging.PagingData
 import com.myk.feature.search.data.repository.PokemonRepositoryImpl
 import com.myk.feature.search.domain.usecase.GetPokemonUseCase
 import io.mockk.MockKAnnotations
@@ -8,9 +9,8 @@ import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
-import org.amshove.kluent.shouldBeEqualTo
+import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,15 +33,17 @@ class GetPokemonUsecaseTest {
 
     @Test
     @ExperimentalCoroutinesApi
-    fun `return list of pokemon`() {
+    fun `return Paging Data list of pokemon`() {
         // given
         val pokemon = listOf(DomainFixtures.getPokemonDomainModel())
-        coEvery { mockPokemonRepository.getPokemon() } returns flowOf(pokemon)
+        coEvery { mockPokemonRepository.getPokemon() } returns flowOf(PagingData.from(pokemon))
 
         // when
-        val result = runBlocking { cut.invoke().take(1).first() }
+        val result = runBlocking { cut.invoke().first() }
 
         // then
-        result shouldBeEqualTo pokemon
+        // For now just making sure we are returning Paging Data.
+        // todo find out how to compare contents of PagingData
+        result shouldBeInstanceOf (PagingData::class.java)
     }
 }

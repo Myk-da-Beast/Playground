@@ -8,5 +8,5 @@ import com.myk.feature.search.domain.usecase.GetPokemonUseCase
 class SearchViewModel(
     private val getPokemon: GetPokemonUseCase
 ) : ViewModel() {
-    fun searchRepo() = getPokemon().cachedIn(viewModelScope)
+    fun getPokemonPages() = getPokemon().cachedIn(viewModelScope)
 }

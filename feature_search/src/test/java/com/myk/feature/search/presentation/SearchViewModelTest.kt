@@ -1,12 +1,19 @@
 package com.myk.feature.search.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.paging.PagingData
+import com.myk.feature.search.domain.DomainFixtures
 import com.myk.feature.search.domain.usecase.GetPokemonUseCase
 import com.myk.library.testUtils.CoroutineRule
 import io.mockk.MockKAnnotations
+import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
+import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -36,12 +43,20 @@ class SearchViewModelTest {
     }
 
     @Test
-    fun `execute getPokemonUseCase`() {
+    fun `getPokemonPages() invokes UseCase and returns page of pokemon domain models`() {
         // given
+        val pokemon = listOf(DomainFixtures.getPokemonDomainModel())
+        coEvery {
+            mockGetPokemonUseCase.invoke()
+        } returns flowOf(PagingData.from(pokemon))
 
         // when
+        val result = runBlocking {
+            cut.getPokemonPages().first()
+        }
 
         // then
         coVerify { mockGetPokemonUseCase.invoke() }
+        result shouldBeInstanceOf (PagingData::class.java)
     }
 }

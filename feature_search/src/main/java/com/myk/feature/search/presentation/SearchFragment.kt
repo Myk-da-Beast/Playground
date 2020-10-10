@@ -50,7 +50,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.searchRepo().collectLatest { pagingData ->
+            viewModel.getPokemonPages().collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
         }
