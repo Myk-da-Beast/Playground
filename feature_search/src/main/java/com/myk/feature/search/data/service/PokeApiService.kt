@@ -17,4 +17,10 @@ interface PokeApiService {
 
     @GET("item/")
     suspend fun getItems(): ItemResponse
+
+    @GET("item")
+    suspend fun getItems(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): ItemResponse
 }

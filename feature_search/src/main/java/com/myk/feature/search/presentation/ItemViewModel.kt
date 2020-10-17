@@ -1,13 +1,12 @@
 package com.myk.feature.search.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.myk.feature.search.domain.model.ItemDomainModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.myk.feature.search.domain.usecase.GetItemsUseCase
 
 class ItemViewModel(
-    getItems: GetItemsUseCase
+    private val getItems: GetItemsUseCase
 ) : ViewModel() {
-    val items: LiveData<List<ItemDomainModel>> = getItems().asLiveData()
+    fun getItemPages() = getItems().cachedIn(viewModelScope)
 }

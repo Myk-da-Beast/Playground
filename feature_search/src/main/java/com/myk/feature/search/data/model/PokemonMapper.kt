@@ -9,6 +9,7 @@ import com.myk.library.data.model.PokemonLocalDataModel
 val PokemonRemoteDataModel.toLocalDataModel: PokemonLocalDataModel
     get() {
         requireNotNull(name)
+
         /**
          * Very specific function that will try to parse an Id out of a string. Always assuming that the
          * string is a url of the form: "https://pokeapi.co/api/v2/pokemon/1/" where id is in the last

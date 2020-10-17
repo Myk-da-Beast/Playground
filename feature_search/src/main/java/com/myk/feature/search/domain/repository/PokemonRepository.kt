@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
     fun getPokemon(): Flow<PagingData<PokemonDomainModel>>
-    fun getItems(): Flow<List<ItemDomainModel>>
+    fun getItems(): Flow<PagingData<ItemDomainModel>>
 }
