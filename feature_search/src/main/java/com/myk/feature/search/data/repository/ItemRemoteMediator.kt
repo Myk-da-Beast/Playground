@@ -12,7 +12,7 @@ import com.myk.library.data.model.ItemLocalDataModel
 import timber.log.Timber
 
 @OptIn(ExperimentalPagingApi::class)
-class ItemRemoteMediator(
+internal class ItemRemoteMediator(
     private val itemDao: ItemDao,
     private val networkService: PokeApiService
 ) : RemoteMediator<Int, ItemLocalDataModel>() {

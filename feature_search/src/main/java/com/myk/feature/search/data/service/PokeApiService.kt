@@ -1,13 +1,15 @@
 package com.myk.feature.search.data.service
 
+import com.myk.feature.search.data.model.PokemonRemoteDataModel
 import com.myk.feature.search.data.response.ItemResponse
 import com.myk.feature.search.data.response.PokemonResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface PokeApiService {
-    @GET("pokemon/")
-    suspend fun getPokemon(): PokemonResponse
+internal interface PokeApiService {
+    @GET("pokemon/{id}")
+    suspend fun getPokemon(@Path("id") id: Int): PokemonRemoteDataModel
 
     @GET("pokemon")
     suspend fun getPokemon(

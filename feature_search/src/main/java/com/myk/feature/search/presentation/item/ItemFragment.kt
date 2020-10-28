@@ -1,4 +1,4 @@
-package com.myk.feature.search.presentation
+package com.myk.feature.search.presentation.item
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,27 +12,29 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import coil.load
 import com.myk.feature.search.R
+import com.myk.feature.search.databinding.ItemFragmentBinding
 import com.myk.feature.search.databinding.PokemonItemBinding
-import com.myk.feature.search.databinding.SearchFragmentBinding
-import com.myk.feature.search.domain.model.PokemonDomainModel
+import com.myk.feature.search.domain.model.ItemDomainModel
 import com.myk.library.base.presentation.BaseAdapter
 import com.myk.library.base.presentation.viewBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+// this is the solution for dynamic feature dependency injection with koin
 /**
  * This screen allows a user to search for Pokemon!
  */
-class SearchFragment : Fragment(R.layout.search_fragment) {
+class ItemFragment : Fragment(R.layout.item_fragment) {
 
-    private val viewModel: SearchViewModel by viewModel()
-    private val binding by viewBinding(SearchFragmentBinding::bind)
+    private val viewModel: ItemViewModel by viewModel()
+    private val binding by viewBinding(ItemFragmentBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = PokemonAdapter()
+        val adapter = ItemsAdapter()
         binding.recycleView.adapter = adapter
+
         adapter.addLoadStateListener {
             // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
             val errorState = it.source.append as? LoadState.Error
@@ -50,35 +52,36 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getPokemonPages().collectLatest { pagingData ->
+            viewModel.getItemPages().collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
         }
     }
 
-    class PokemonDiffUtil : DiffUtil.ItemCallback<PokemonDomainModel>() {
+    class ItemDiffUtil : DiffUtil.ItemCallback<ItemDomainModel>() {
         override fun areItemsTheSame(
-            oldItem: PokemonDomainModel,
-            newItem: PokemonDomainModel
+            oldItem: ItemDomainModel,
+            newItem: ItemDomainModel
         ): Boolean = oldItem.name == newItem.name
 
         override fun areContentsTheSame(
-            oldItem: PokemonDomainModel,
-            newItem: PokemonDomainModel
+            oldItem: ItemDomainModel,
+            newItem: ItemDomainModel
         ): Boolean = oldItem == newItem
     }
 
-    class PokemonAdapter :
-        PagingDataAdapter<PokemonDomainModel, PokemonViewHolder>(PokemonDiffUtil()) {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PokemonViewHolder(
-            PokemonItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+    class ItemsAdapter :
+        PagingDataAdapter<ItemDomainModel, ItemViewHolder>(ItemDiffUtil()) {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            ItemViewHolder(
+                PokemonItemBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
-        )
 
-        override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             holder.itemView.setOnClickListener {
                 // onItemClickListener?.invoke(item)
             }
@@ -86,10 +89,10 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
-    class PokemonViewHolder(
+    class ItemViewHolder(
         binding: PokemonItemBinding
-    ) : BaseAdapter.ViewHolder<PokemonDomainModel, PokemonItemBinding>(binding) {
-        override fun bind(item: PokemonDomainModel?) {
+    ) : BaseAdapter.ViewHolder<ItemDomainModel, PokemonItemBinding>(binding) {
+        override fun bind(item: ItemDomainModel?) {
             binding.imageView.load(item?.imageUrl)
         }
     }

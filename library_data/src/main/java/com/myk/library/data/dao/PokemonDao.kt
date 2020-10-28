@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.myk.library.data.model.PokemonLocalDataModel
 import kotlinx.coroutines.flow.Flow
 
@@ -14,14 +15,18 @@ interface PokemonDao {
     @Query("SELECT * FROM PokemonLocalDataModel")
     fun getAll(): Flow<List<PokemonLocalDataModel>>
 
+    @Query("SELECT * FROM PokemonLocalDataModel WHERE id=:id")
+    fun getPokemon(id: Int): Flow<PokemonLocalDataModel>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(pokemon: PokemonLocalDataModel)
 
+    @Update(onConflict = OnConflictStrategy.FAIL)
+    suspend fun update(pokemon: PokemonLocalDataModel)
+
     @Transaction
     suspend fun insertAll(pokemon: List<PokemonLocalDataModel>) {
-        pokemon.forEach {
-            insert(it)
-        }
+        pokemon.forEach { insert(it) }
     }
 
     @Transaction

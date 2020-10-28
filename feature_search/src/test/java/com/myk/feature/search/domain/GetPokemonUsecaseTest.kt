@@ -2,7 +2,7 @@ package com.myk.feature.search.domain
 
 import androidx.paging.PagingData
 import com.myk.feature.search.data.repository.PokemonRepositoryImpl
-import com.myk.feature.search.domain.usecase.GetPokemonUseCase
+import com.myk.feature.search.domain.usecase.GetPokemonPageUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -22,13 +22,13 @@ class GetPokemonUsecaseTest {
     @MockK
     internal lateinit var mockPokemonRepository: PokemonRepositoryImpl
 
-    private lateinit var cut: GetPokemonUseCase
+    private lateinit var cut: GetPokemonPageUseCase
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
 
-        cut = GetPokemonUseCase(mockPokemonRepository)
+        cut = GetPokemonPageUseCase(mockPokemonRepository)
     }
 
     @Test
@@ -36,7 +36,7 @@ class GetPokemonUsecaseTest {
     fun `return Paging Data list of pokemon`() {
         // given
         val pokemon = listOf(DomainFixtures.getPokemonDomainModel())
-        coEvery { mockPokemonRepository.getPokemon() } returns flowOf(PagingData.from(pokemon))
+        coEvery { mockPokemonRepository.getPokemonPage() } returns flowOf(PagingData.from(pokemon))
 
         // when
         val result = runBlocking { cut.invoke().first() }

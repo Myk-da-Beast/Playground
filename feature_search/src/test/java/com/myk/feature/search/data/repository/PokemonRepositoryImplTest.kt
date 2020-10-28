@@ -45,7 +45,7 @@ class PokemonRepositoryImplTest {
             coEvery { mockPokemonDao.pagingSource() } returns mockk(relaxed = true)
 
             // when
-            val result = cut.getPokemon().take(1).first()
+            val result = cut.getPokemonPage().take(1).first()
 
             // then
             coVerify {

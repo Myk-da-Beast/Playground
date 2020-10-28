@@ -12,7 +12,7 @@ import com.myk.library.data.model.PokemonLocalDataModel
 import timber.log.Timber
 
 @OptIn(ExperimentalPagingApi::class)
-class PokemonRemoteMediator(
+internal class PokemonRemoteMediator(
     private val pokemonDao: PokemonDao,
     private val networkService: PokeApiService
 ) : RemoteMediator<Int, PokemonLocalDataModel>() {
@@ -47,6 +47,7 @@ class PokemonRemoteMediator(
             val response = networkService.getPokemon(offset = offset, limit = 20).results
 
             val localDataModels = response.map(PokemonRemoteDataModel::toLocalDataModel)
+
             // Note: These functions have to be transactions for whatever reason. Seems like you can
             // only have one transaction in this function total as well.
             if (loadType == LoadType.REFRESH) pokemonDao.clearDatabaseAndInsertNew(localDataModels)

@@ -6,9 +6,11 @@ import com.myk.library.data.model.PokemonLocalDataModel
 /**
  * Maps the Pokemon DTO to the domain model.
  */
-val PokemonRemoteDataModel.toLocalDataModel: PokemonLocalDataModel
+internal val PokemonRemoteDataModel.toLocalDataModel: PokemonLocalDataModel
     get() {
-        requireNotNull(name)
+        requireNotNull(name) {
+            "Name is null."
+        }
 
         /**
          * Very specific function that will try to parse an Id out of a string. Always assuming that the
@@ -24,15 +26,20 @@ val PokemonRemoteDataModel.toLocalDataModel: PokemonLocalDataModel
         }
 
         return PokemonLocalDataModel(
-            extractId(url).toInt(),
-            name,
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/" +
-                "generation-vii/ultra-sun-ultra-moon/${extractId(url)}.png"
+            id = id ?: extractId(url).toInt(),
+            name = name,
+            imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/" +
+                "official-artwork/${id ?: extractId(url).toInt()}.png",
+            types = types?.map {
+                it.type.name
+            }
         )
     }
 
-val PokemonLocalDataModel.toDomainModel: PokemonDomainModel
+internal val PokemonLocalDataModel.toDomainModel: PokemonDomainModel
     get() = PokemonDomainModel(
-        name,
-        imageUrl ?: "N/A"
+        id = id,
+        name = name,
+        imageUrl = imageUrl ?: "N/A",
+        types = types ?: listOf()
     )

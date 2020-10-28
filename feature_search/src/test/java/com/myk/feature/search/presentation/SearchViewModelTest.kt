@@ -3,7 +3,8 @@ package com.myk.feature.search.presentation
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingData
 import com.myk.feature.search.domain.DomainFixtures
-import com.myk.feature.search.domain.usecase.GetPokemonUseCase
+import com.myk.feature.search.domain.usecase.GetPokemonPageUseCase
+import com.myk.feature.search.presentation.search.SearchViewModel
 import com.myk.library.testUtils.CoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -31,7 +32,7 @@ class SearchViewModelTest {
     var rule = InstantTaskExecutorRule()
 
     @MockK(relaxed = true)
-    internal lateinit var mockGetPokemonUseCase: GetPokemonUseCase
+    internal lateinit var mockGetPokemonUseCase: GetPokemonPageUseCase
 
     private lateinit var cut: SearchViewModel
 

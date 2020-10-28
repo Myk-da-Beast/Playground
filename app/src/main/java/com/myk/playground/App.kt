@@ -2,6 +2,7 @@ package com.myk.playground
 
 import android.app.Application
 import coil.ImageLoader
+import coil.ImageLoaderFactory
 import coil.util.CoilUtils
 import com.myk.playground.di.sharedModules
 import okhttp3.OkHttpClient
@@ -10,13 +11,12 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
-class App : Application() {
+class App : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
 
         initTimber()
         initKoin()
-        initCoil()
     }
 
     private fun initTimber() {
@@ -36,14 +36,12 @@ class App : Application() {
         }
     }
 
-    private fun initCoil() {
-        ImageLoader.Builder(this)
-            .crossfade(true)
-            .okHttpClient {
-                OkHttpClient.Builder()
-                    .cache(CoilUtils.createDefaultCache(this))
-                    .build()
-            }
-            .build()
-    }
+    override fun newImageLoader() = ImageLoader.Builder(this)
+        .crossfade(true)
+        .okHttpClient {
+            OkHttpClient.Builder()
+                .cache(CoilUtils.createDefaultCache(this))
+                .build()
+        }
+        .build()
 }

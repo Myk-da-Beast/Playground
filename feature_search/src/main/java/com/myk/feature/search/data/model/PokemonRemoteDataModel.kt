@@ -1,9 +1,20 @@
 package com.myk.feature.search.data.model
 
-data class PokemonRemoteDataModel(
+internal data class PokemonRemoteDataModel(
+    val id: Int?,
     val name: String?,
-    val url: String?
-)
+    val url: String?,
+    val types: List<PokemonTypeList>?,
+) {
+    data class PokemonTypeList(
+        val type: PokemonType
+    )
+
+    data class PokemonType(
+        val name: String,
+        val url: String
+    )
+}
 
 /** Possible Fields **/
 

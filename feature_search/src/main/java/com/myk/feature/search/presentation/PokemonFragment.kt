@@ -8,6 +8,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.myk.feature.search.R
 import com.myk.feature.search.databinding.PokemonFragmentBinding
 import com.myk.feature.search.di.searchModule
+import com.myk.feature.search.presentation.item.ItemFragment
+import com.myk.feature.search.presentation.search.SearchFragment
 import com.myk.library.base.presentation.viewBinding
 import com.myk.library.data.di.dataModule
 import com.myk.playground.di.sharedModules

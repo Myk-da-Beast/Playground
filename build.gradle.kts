@@ -54,7 +54,8 @@ tasks.register("clean", Delete::class.java) {
 }
 buildscript {
     dependencies {
-        classpath(GeneralLibs.KOTLIN_GRADLE_PLUGIN)
+        classpath(GradlePlugins.KOTLIN_GRADLE_PLUGIN)
+        classpath(GradlePlugins.SAFE_ARGS)
     }
 }
 

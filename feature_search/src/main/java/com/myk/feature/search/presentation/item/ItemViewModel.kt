@@ -1,4 +1,4 @@
-package com.myk.feature.search.presentation
+package com.myk.feature.search.presentation.item
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

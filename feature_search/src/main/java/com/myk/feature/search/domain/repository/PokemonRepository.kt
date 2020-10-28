@@ -6,6 +6,7 @@ import com.myk.feature.search.domain.model.PokemonDomainModel
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
-    fun getPokemon(): Flow<PagingData<PokemonDomainModel>>
+    fun getPokemonPage(): Flow<PagingData<PokemonDomainModel>>
+    fun getPokemon(id: Int): Flow<PokemonDomainModel?>
     fun getItems(): Flow<PagingData<ItemDomainModel>>
 }

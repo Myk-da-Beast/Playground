@@ -30,16 +30,20 @@ object Versions {
 }
 
 object BuildPluginsVersion {
-    const val AGP = "4.2.0-alpha12"
+    const val AGP = "4.2.0-alpha13"
     const val DETEKT = "1.10.0"
     const val KOTLIN = "1.3.72"
     const val KTLINT = "9.2.1"
     const val VERSIONS_PLUGIN = "0.28.0"
 }
 
+object GradlePlugins {
+    const val SAFE_ARGS = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAV}"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
+}
+
 object GeneralLibs {
     const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN}"
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
 }
 
 object SupportLibs {

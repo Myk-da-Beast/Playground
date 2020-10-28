@@ -54,5 +54,7 @@ dependencies {
     implementation(CoroutineLibs.LIFECYCLE_VIEWMODEL)
     implementation(CoroutineLibs.LIFECYCLE_COMMON)
 
+    implementation(PagingLibs.PAGING_RUNTIME)
+
     addTestDependencies()
 }
