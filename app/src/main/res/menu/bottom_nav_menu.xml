@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/searchGraph"
+        android:icon="@drawable/ic_pokeball"
         android:title="@string/search" />
     <item
         android:id="@+id/teamsGraph"

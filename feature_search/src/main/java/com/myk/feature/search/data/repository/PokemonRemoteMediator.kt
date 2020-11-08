@@ -50,7 +50,7 @@ internal class PokemonRemoteMediator(
 
             // Note: These functions have to be transactions for whatever reason. Seems like you can
             // only have one transaction in this function total as well.
-            if (loadType == LoadType.REFRESH) pokemonDao.clearDatabaseAndInsertNew(localDataModels)
+            if (loadType == LoadType.REFRESH) pokemonDao.insertAll(localDataModels)
             else pokemonDao.insertAll(localDataModels)
 
             MediatorResult.Success(endOfPaginationReached = false)

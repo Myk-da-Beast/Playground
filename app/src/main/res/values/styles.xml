@@ -1,6 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar"></style>
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="toolbarNavigationButtonStyle">@style/TintedNavigation</item>
+    </style>
+
+    <style name="TintedNavigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">@color/white</item>
+    </style>
 
 </resources>

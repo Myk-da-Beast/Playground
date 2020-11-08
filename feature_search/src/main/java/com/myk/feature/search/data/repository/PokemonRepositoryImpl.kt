@@ -18,8 +18,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import timber.log.Timber
 
 private const val PAGE_SIZE = 20
 
@@ -36,7 +38,10 @@ internal class PokemonRepositoryImpl(
     ) {
         pokemonDao.pagingSource()
     }.flow.map { pagingData ->
-        pagingData.map { it.toDomainModel }
+        pagingData.map {
+            Timber.d("glop $it")
+            it.toDomainModel
+        }
     }
 
     override fun getPokemon(id: Int) = flow {
@@ -54,8 +59,11 @@ internal class PokemonRepositoryImpl(
             // and then forward the emissions to flow builder.
             // NOTE: This code is written out in a more verbose style intentionally to make the flow
             // of data more apparent.
-            val localDataModel: Flow<PokemonLocalDataModel> = pokemonDao.getPokemon(id)
-            val domainModel: Flow<PokemonDomainModel> = localDataModel.map { it.toDomainModel }
+            val localDataModel: Flow<PokemonLocalDataModel> =
+                pokemonDao.getPokemon(id).filterNotNull()
+            val domainModel: Flow<PokemonDomainModel> = localDataModel.map {
+                it.toDomainModel
+            }
             emitAll(domainModel)
         }
     }

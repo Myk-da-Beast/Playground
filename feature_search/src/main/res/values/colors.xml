@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Pokemon Type Colors -->
+    <color name="fire_type_color">#ff9c5b</color>
+    <color name="water_type_color">#4c90d2</color>
+    <color name="grass_type_color">#63bb61</color>
+    <color name="electric_type_color">#f4d24d</color>
+    <color name="normal_type_color">#9099a0</color>
+    <color name="fighting_type_color">#ce4169</color>
+    <color name="flying_type_color">#8fa8db</color>
+    <color name="poison_type_color">#ab6ac5</color>
+    <color name="rock_type_color">#c7b78e</color>
+    <color name="ground_type_color">#d9774b</color>
+    <color name="bug_type_color">#90c13e</color>
+    <color name="ghost_type_color">#5269a9</color>
+    <color name="steel_type_color">#d1d1df</color>
+    <color name="psychic_type_color">#f97178</color>
+    <color name="ice_type_color">#bbe6e5</color>
+    <color name="dragon_type_color">#066dc1</color>
+    <color name="dark_type_color">#5a5366</color>
+    <color name="fairy_type_color">#ec8fe3</color>
+</resources>

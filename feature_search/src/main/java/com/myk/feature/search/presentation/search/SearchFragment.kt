@@ -1,24 +1,20 @@
 package com.myk.feature.search.presentation.search
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.os.Handler
+import android.os.Parcelable
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import coil.load
 import com.myk.feature.search.R
-import com.myk.feature.search.databinding.PokemonItemBinding
 import com.myk.feature.search.databinding.SearchFragmentBinding
 import com.myk.feature.search.domain.model.PokemonDomainModel
-import com.myk.library.base.presentation.BaseAdapter
+import com.myk.feature.search.presentation.PokemonFragmentDirections
 import com.myk.library.base.presentation.viewBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -31,18 +27,20 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private val viewModel: SearchViewModel by viewModel()
     private val binding by viewBinding(SearchFragmentBinding::bind)
+    private var recyclerViewState: Parcelable? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = PokemonAdapter()
+
         adapter.setOnClickListener { pokemon, imageView ->
+            recyclerViewState = binding.recycleView.layoutManager?.onSaveInstanceState()
             val extras = FragmentNavigatorExtras(
                 imageView to pokemon.imageUrl
             )
             findNavController().navigate(
                 PokemonFragmentDirections.actionPokemonFragmentToPokemonDetailFragment(
-                    pokemon.id,
-                    pokemon.imageUrl
+                    pokemon.id, pokemon.imageUrl
                 ),
                 extras
             )
@@ -71,6 +69,13 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Handler().post {
+            binding.recycleView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+        }
+    }
+
     class PokemonDiffUtil : DiffUtil.ItemCallback<PokemonDomainModel>() {
         override fun areItemsTheSame(
             oldItem: PokemonDomainModel,
@@ -81,41 +86,5 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
             oldItem: PokemonDomainModel,
             newItem: PokemonDomainModel
         ): Boolean = oldItem == newItem
-    }
-
-    class PokemonAdapter :
-        PagingDataAdapter<PokemonDomainModel, PokemonViewHolder>(PokemonDiffUtil()) {
-
-        private var onItemClickListener: ((PokemonDomainModel, ImageView) -> Unit)? = null
-
-        override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-            val item = getItem(position) ?: return
-            holder.itemView.setOnClickListener {
-                onItemClickListener?.invoke(item, holder.binding.imageView)
-            }
-            holder.bind(item)
-        }
-
-        fun setOnClickListener(listener: (PokemonDomainModel, ImageView) -> Unit) {
-            onItemClickListener = listener
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PokemonViewHolder(
-            PokemonItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    class PokemonViewHolder(
-        binding: PokemonItemBinding
-    ) : BaseAdapter.ViewHolder<PokemonDomainModel, PokemonItemBinding>(binding) {
-        override fun bind(item: PokemonDomainModel?) {
-            binding.imageView.transitionName = item?.imageUrl
-            binding.imageView.load(item?.imageUrl)
-            binding.textView.text = item?.name
-        }
     }
 }
