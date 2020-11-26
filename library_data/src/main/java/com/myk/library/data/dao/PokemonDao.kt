@@ -21,7 +21,7 @@ interface PokemonDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(pokemon: PokemonLocalDataModel)
 
-    @Update(onConflict = OnConflictStrategy.FAIL)
+    @Update(onConflict = OnConflictStrategy.ABORT)
     suspend fun update(pokemon: PokemonLocalDataModel)
 
     @Transaction

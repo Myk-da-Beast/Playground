@@ -16,7 +16,9 @@ import com.myk.library.data.model.TypeLocalDataModel
         ItemLocalDataModel::class,
         TypeLocalDataModel::class,
     ],
-    version = 6
+    version = 6,
+    // TODO update this once we implement migrations and finalize database
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

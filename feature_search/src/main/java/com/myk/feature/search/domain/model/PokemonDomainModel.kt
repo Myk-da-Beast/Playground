@@ -10,6 +10,7 @@ data class PokemonDomainModel(
     val types: List<String> = listOf()
 ) {
     @ColorRes
+    @Suppress("ComplexMethod")
     fun getColorForType(type: String?) = when (type) {
         "fire" -> R.color.fire_type_color
         "water" -> R.color.water_type_color

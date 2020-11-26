@@ -136,7 +136,7 @@ class PokemonRemoteMediatorTest {
             mockService.getPokemon(any(), any()).results
         } returns pokemonParam
         coEvery {
-            mockPokemonDao.clearDatabaseAndInsertNew(any())
+            mockPokemonDao.insertAll(any())
         } just runs
 
         // when
@@ -147,10 +147,7 @@ class PokemonRemoteMediatorTest {
         // then
         coVerify {
             mockService.getPokemon(0, any())
-            mockPokemonDao.clearDatabaseAndInsertNew(pokemonParam.map(PokemonRemoteDataModel::toLocalDataModel))
-        }
-        coVerify(exactly = 0) {
-            mockPokemonDao.insertAll(any())
+            mockPokemonDao.insertAll(pokemonParam.map(PokemonRemoteDataModel::toLocalDataModel))
         }
 
         result shouldBeInstanceOf RemoteMediator.MediatorResult.Success::class
