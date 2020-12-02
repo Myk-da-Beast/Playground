@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.transition.TransitionInflater
 import coil.load
 import com.myk.feature.search.R
 import com.myk.feature.search.databinding.PokemonDetailFragmentBinding
@@ -25,8 +24,9 @@ class PokemonDetailFragment : Fragment(R.layout.pokemon_detail_fragment) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        // Todo the transition looks pretty terrible so let's keep it off til we address the issues
+        // sharedElementEnterTransition =
+        //     TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

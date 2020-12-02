@@ -7,8 +7,9 @@ import androidx.paging.PagingDataAdapter
 import com.myk.feature.search.databinding.PokemonItemBinding
 import com.myk.feature.search.domain.model.PokemonDomainModel
 
-class PokemonAdapter :
-    PagingDataAdapter<PokemonDomainModel, PokemonViewHolder>(SearchFragment.PokemonDiffUtil()) {
+class PokemonAdapter : PagingDataAdapter<PokemonDomainModel, PokemonViewHolder>(
+    SearchFragment.PokemonDiffUtil()
+) {
 
     private var onItemClickListener: ((PokemonDomainModel, ImageView) -> Unit)? = null
 
